@@ -2,6 +2,10 @@ import { Module } from '@nestjs/common';
 import { CatModule } from './cat/cat.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Profile } from './user/entities/profile.entity';
+import { User } from './user/entities/user.entity';
+import { Roles } from './rols/entities/roles.enetity';
+import { Logs } from './logs/entities/logs.entity';
 
 @Module({
   imports: [
@@ -14,7 +18,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'example',
       database: 'testdb',
-      entities: [],
+      entities: [Profile, User, Roles, Logs],
       synchronize: true,
       logging: ['error'],
     }),
