@@ -22,13 +22,14 @@ export class CatController {
   }
 
   @Get()
-  findAll(): Promise<Cat[]> {
+  async findAll(): Promise<Cat[]> {
     return this.catService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.catService.findOne(+id);
+    console.log('浪子的id', id);
+    return 123;
   }
 
   @Patch(':id')

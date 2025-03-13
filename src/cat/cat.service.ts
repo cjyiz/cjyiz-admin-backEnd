@@ -18,7 +18,7 @@ export class CatService {
         breed: '布偶',
       },
     ];
-    return Promise.resolve(result);
+    return result;
   }
 
   findOne(id: number) {
