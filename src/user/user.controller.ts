@@ -22,21 +22,35 @@ export class UserController {
 
   @Get()
   findAll() {
-    return this.userService.findAll();
+    console.log('cjyiz查询所有');
+    return 'hahah';
+    // return this.userService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  @Get('/profile')
+  getUserProfile(): any {
+    console.log('cjyiz查询profile这里了吗');
+    return this.userService.findProfile(2);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  @Get('/logs')
+  getUserLogs(): any {
+    console.log('cjyiz查询profile这里了吗');
+    return this.userService.findUserLogs(3);
   }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   console.log('cjyiz查询2');
+  //   return this.userService.findOne(+id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  //   return this.userService.update(+id, updateUserDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.userService.remove(+id);
+  // }
 }
