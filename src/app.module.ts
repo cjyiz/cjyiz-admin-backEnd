@@ -6,6 +6,7 @@ import { Profile } from './user/entities/profile.entity';
 import { User } from './user/entities/user.entity';
 import { Roles } from './rols/entities/roles.enetity';
 import { Logs } from './logs/entities/logs.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { Logs } from './logs/entities/logs.entity';
       synchronize: true,
       logging: ['error'],
     }),
+    AuthModule,
   ],
   controllers: [],
   providers: [],
