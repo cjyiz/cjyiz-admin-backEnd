@@ -6,18 +6,24 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
+  Req,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { CreateUserPipe } from './pipes/create-user.pipe';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
+  @Post('/addUser')
+  addUser(@Body(CreateUserPipe) dto: CreateUserDto): any {
+    console.log('新增用户cjyiz', dto);
+    const user = dto as User;
+    return this.userService.create(user);
   }
 
   @Get()
@@ -27,30 +33,41 @@ export class UserController {
     // return this.userService.findAll();
   }
 
+  @Get('/:id')
+  getUser(@Param('id', ParseIntPipe) id: number): any {
+    console.log('cjyiz查询用户2', id);
+    return this.userService.findOne(id);
+  }
+
   @Get('/profile')
   getUserProfile(): any {
-    console.log('cjyiz查询profile这里了吗');
     return this.userService.findProfile(2);
   }
 
   @Get('/logs')
   getUserLogs(): any {
-    console.log('cjyiz查询profile这里了吗');
     return this.userService.findUserLogs(3);
   }
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   console.log('cjyiz查询2');
-  //   return this.userService.findOne(+id);
-  // }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-  //   return this.userService.update(+id, updateUserDto);
-  // }
+  @Delete('/:id')
+  remove(@Param('id') id: number): any {
+    return this.userService.remove(id);
+  }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.userService.remove(+id);
-  // }
+  @Patch('/:id')
+  updateUser(
+    @Body() dto: any,
+    @Param('id', ParseIntPipe) id: number,
+    @Req() req,
+  ) {
+    console.log('修改信息', id, req);
+    // if (id === parseInt(req.user?.userId)) {
+    const user = dto as User;
+    console.log('更新用户信息cjyiz', user);
+
+    return this.userService.update(id, user);
+    // } else {
+    //   throw new UnauthorizedException();
+    // }
+  }
 }

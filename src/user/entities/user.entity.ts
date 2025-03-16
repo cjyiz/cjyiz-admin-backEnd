@@ -24,11 +24,14 @@ export class User {
   password: string;
 
   // 用户对其他表一对多
-  @OneToMany(() => Logs, (logs) => logs.user)
+  @OneToMany(() => Logs, (logs) => logs.user, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   logs: Logs[];
 
-  @ManyToMany(() => Roles, (roles) => roles.user)
+  @ManyToMany(() => Roles, (roles) => roles.user, { cascade: ['insert'] })
   @JoinTable({ name: 'user_roles' })
   roles: Roles[];
 

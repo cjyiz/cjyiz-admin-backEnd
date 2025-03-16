@@ -19,8 +19,8 @@ export class Profile {
   address: string;
 
   @OneToOne(() => User, (user) => user.profile, {
-    onDelete: 'NO ACTION',
-    onUpdate: 'NO ACTION',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   @JoinColumn({ name: 'userId', referencedColumnName: 'id' })
   user: User;
