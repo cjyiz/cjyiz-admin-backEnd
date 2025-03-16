@@ -13,7 +13,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     const request = ctx.getRequest();
 
-
     const status = exception.getStatus();
 
     console.log('cjyiz状态码', status);
