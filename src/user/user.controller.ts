@@ -17,6 +17,7 @@ import { User } from './entities/user.entity';
 import { CreateUserPipe } from './pipes/create-user.pipe';
 import { AdminGuard } from 'src/gurads/admin.guard';
 import { AuthGuard } from '@nestjs/passport';
+import { JwtGuard } from 'src/gurads/jwt.guard';
 
 @Controller('user')
 export class UserController {
@@ -38,7 +39,7 @@ export class UserController {
 
   @Get('/:id')
   @UseGuards(AdminGuard)
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtGuard)
   getUser(@Param('id', ParseIntPipe) id: number): any {
     console.log('cjyiz查询用户2', id);
     return this.userService.findOne(id);
