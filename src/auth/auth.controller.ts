@@ -1,42 +1,30 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { SigninUserDto } from './dto/signin-user.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post()
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto);
-  }
-
   @Get()
-  findAll() {
-    return this.authService.findAll();
+  getHello(): string {
+    return 'Hello world';
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
+  @Post('/signin')
+  async signin(@Body() dto: SigninUserDto) {
+    const { username, password } = dto;
+    console.log('cjyiz获取用户鉴权信息', username, password);
+    const token = await this.authService.signin(username, password);
+    console.log('获取的token是什么', token);
+    return {
+      access_token: token,
+    };
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
+  @Post()
+  signup(@Body() dto: SigninUserDto) {
+    const { username, password } = dto;
+    return this.authService.signup(username, password);
   }
 }

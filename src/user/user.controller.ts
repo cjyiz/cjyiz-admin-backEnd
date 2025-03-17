@@ -9,11 +9,14 @@ import {
   ParseIntPipe,
   Req,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { CreateUserPipe } from './pipes/create-user.pipe';
+import { AdminGuard } from 'src/gurads/admin.guard';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
@@ -34,6 +37,8 @@ export class UserController {
   }
 
   @Get('/:id')
+  @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard('jwt'))
   getUser(@Param('id', ParseIntPipe) id: number): any {
     console.log('cjyiz查询用户2', id);
     return this.userService.findOne(id);

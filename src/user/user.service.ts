@@ -50,6 +50,13 @@ export class UserService {
     return this.userRepository.findOne({ where: { id } });
   }
 
+  find(username: string) {
+    return this.userRepository.findOne({
+      where: { username },
+      relations: ['roles'],
+    });
+  }
+
   async update(id: any, user: Partial<User>) {
     const userTemp = await this.findProfile(parseInt(id));
     if (!userTemp) return;

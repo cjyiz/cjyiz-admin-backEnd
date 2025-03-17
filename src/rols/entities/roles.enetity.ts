@@ -1,26 +1,23 @@
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Expose } from 'class-transformer';
 import { User } from 'src/user/entities/user.entity';
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn,
-  ManyToMany,
-  JoinTable,
-} from 'typeorm';
+import { Menus } from 'src/menus/menu.entity';
 
 @Entity()
 export class Roles {
   @PrimaryGeneratedColumn()
+  @Expose()
   id: number;
 
   @Column()
+  @Expose()
   name: string;
 
-  @ManyToMany(() => User, (user) => user.logs)
-  @JoinTable({
-    name: 'users_roles',
-    joinColumns: [{ name: 'rolesId', referencedColumnName: 'id' }],
-    inverseJoinColumns: [{ name: 'userId', referencedColumnName: 'id' }],
-    schema: 'testdb',
-  })
-  user: User;
+  @ManyToMany(() => User, (user) => user.roles)
+  @Expose()
+  user: User[];
+
+  // @ManyToMany(() => Menus, (menus) => menus.role)
+  // @Expose()
+  // menus: Menus[];
 }
