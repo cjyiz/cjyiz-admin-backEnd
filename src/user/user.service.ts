@@ -18,7 +18,7 @@ export class UserService {
     private readonly rolesRepository: Repository<Roles>,
   ) {}
   async create(user: Partial<User>) {
-    console.log('cjyiz创建用户成功2', user?.username);
+    console.log('cjyiz创建用户成功3', user?.username);
     if (!user.roles) {
       const role = await this.rolesRepository.findOne({ where: { id: 2 } });
       if (role) {
