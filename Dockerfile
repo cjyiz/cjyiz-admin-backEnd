@@ -4,12 +4,15 @@ FROM node:14
 # 工作目录及代码
 WORKDIR /app
 
+# 安装依赖（生产环境不装 devDependencies）
+RUN npm ci --only=production
+
 # 构建命令 npm install && npm run build
 COPY . .
 
 # 暴露的目录与端口
-VOLUME [ "/app/logs" ]
+# VOLUME [ "/app/logs" ]
 
-EXPOSE 13000
+EXPOSE 3006
 # 运行程序的脚本或者命令
 CMD ["npm", "run", "start:prod"]
