@@ -1,5 +1,5 @@
 # 运行的环境 -> Linux文件系统创建出来的 /usr /sys /dev /proc
-FROM node:14
+FROM node:20
 
 # 工作目录及代码
 WORKDIR /app
