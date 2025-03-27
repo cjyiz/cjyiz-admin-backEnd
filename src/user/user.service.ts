@@ -5,7 +5,6 @@ import { Repository, In } from 'typeorm';
 import * as argon2 from 'argon2';
 
 import { User } from './entities/user.entity';
-import { Logs } from 'src/logs/entities/logs.entity';
 import { Roles } from 'src/rols/entities/roles.enetity';
 // import { Logs } from 'src/logs/entities/logs.entity';
 // import { Roles } from 'src/rols/entities/roles.enetity';
@@ -14,7 +13,7 @@ import { Roles } from 'src/rols/entities/roles.enetity';
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
-    @InjectRepository(Logs) private readonly logsRepository: Repository<Logs>,
+    // @InjectRepository(Logs) private readonly logsRepository: Repository<Logs>,
     @InjectRepository(Roles)
     private readonly rolesRepository: Repository<Roles>,
   ) {}
@@ -85,15 +84,9 @@ export class UserService {
     });
   }
 
-  async findUserLogs(id: number) {
-    const user = await this.findOne(id);
-    return this.logsRepository.find({
-      where: {
-        user: user?.logs,
-      },
-      relations: {
-        user: true,
-      },
-    });
+  findUserLogs(id: number) {
+    console.log('cjyizid', id);
+    // const user = await this.findOne(id);
+    return null;
   }
 }
