@@ -13,4 +13,5 @@ COPY . .
 
 EXPOSE 3006
 # 运行程序的脚本或者命令
-CMD ["npm", "run", "start:prod"]
+#CMD ["npm", "run", "start:prod"]
+CMD ["ls"]
