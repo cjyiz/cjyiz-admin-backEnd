@@ -30,9 +30,8 @@ export class UserController {
     return this.userService.create(user);
   }
 
-  @Get()
+  @Get('/findAll')
   findAll() {
-    console.log('cjyiz查询所有');
     return 'hahah';
     // return this.userService.findAll();
   }
@@ -52,7 +51,8 @@ export class UserController {
 
   @Get('/logs')
   getUserLogs(): any {
-    return this.userService.findUserLogs(3);
+    return 2;
+    // return this.userService.findUserLogs(3);
   }
 
   @Delete('/:id')
@@ -66,10 +66,8 @@ export class UserController {
     @Param('id', ParseIntPipe) id: number,
     @Req() req,
   ) {
-    console.log('修改信息', id, req);
     // if (id === parseInt(req.user?.userId)) {
     const user = dto as User;
-    console.log('更新用户信息cjyiz', user);
 
     return this.userService.update(id, user);
     // } else {

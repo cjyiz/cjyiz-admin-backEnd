@@ -7,6 +7,7 @@ import { User } from './user/entities/user.entity';
 import { Roles } from './rols/entities/roles.enetity';
 // import { Logs } from './logs/entities/logs.entity';
 import { AuthModule } from './auth/auth.module';
+import { CaptchaModule } from './captcha/captcha.module';
 
 @Module({
   imports: [
@@ -17,14 +18,15 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      // password: 'example',
-      password: '8560760123cjyiZ@',
+      password: 'example',
+      // password: '8560760123cjyiZ@',
       database: 'testdb',
       entities: [Profile, User, Roles],
       synchronize: true,
       logging: ['error'],
     }),
     AuthModule,
+    CaptchaModule,
   ],
   controllers: [],
   providers: [],

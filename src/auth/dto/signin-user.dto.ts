@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { CaptchaDto } from 'src/captcha/dto/captcha.dto';
 
 export class SigninUserDto {
   @IsString()
@@ -17,4 +18,6 @@ export class SigninUserDto {
   @IsNotEmpty()
   @Length(6, 64)
   password: string;
+
+  captchaKey: CaptchaDto;
 }

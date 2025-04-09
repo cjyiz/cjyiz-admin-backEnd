@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Session } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SigninUserDto } from './dto/signin-user.dto';
 
@@ -12,11 +12,19 @@ export class AuthController {
   }
 
   @Post('/signin')
-  async signin(@Body() dto: SigninUserDto) {
-    const { username, password } = dto;
-    console.log('cjyiz获取用户鉴权信息', username, password);
+  async signin(
+    @Session() session: Record<string, any>,
+    @Body() dto: SigninUserDto,
+  ) {
+    const { username, password, captchaKey } = dto;
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const isCaptchaValid = session.captcha && captchaKey === session.captcha;
+    if (!isCaptchaValid) {
+      return {
+        error: '验证码错误',
+      };
+    }
     const token = await this.authService.signin(username, password);
-    console.log('获取的token是什么', token);
     return {
       access_token: token,
     };
