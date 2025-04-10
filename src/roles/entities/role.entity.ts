@@ -1,7 +1,6 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Expose } from 'class-transformer';
 import { User } from 'src/user/entities/user.entity';
-import { Menus } from 'src/menus/menu.entity';
 
 @Entity()
 export class Roles {

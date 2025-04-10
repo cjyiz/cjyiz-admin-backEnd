@@ -1,5 +1,4 @@
 // import { Logs } from 'src/logs/entities/logs.entity';
-import { Roles } from 'src/rols/entities/roles.enetity';
 import {
   Column,
   Entity,
@@ -7,8 +6,11 @@ import {
   JoinTable,
   ManyToMany,
   OneToOne,
+  OneToMany,
 } from 'typeorm';
 import { Profile } from './profile.entity';
+import { Logs } from 'src/logs/entities/logs.entity';
+import { Roles } from 'src/roles/entities/role.entity';
 
 @Entity()
 export class User {
@@ -21,14 +23,12 @@ export class User {
   @Column()
   password: string;
 
-  // // 用户对其他表一对多
-  // @OneToMany(() => Logs, (logs) => logs.user, {
-  //   cascade: true,
-  //   onDelete: 'CASCADE',
-  // })
-  // @JoinColumn()
-  // logs: Logs[];
-
+  // 用户对其他表一对多
+  @OneToMany(() => Logs, (logs) => logs.user, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  logs: Logs[];
   @ManyToMany(() => Roles, (roles) => roles.user, { cascade: ['insert'] })
   @JoinTable({ name: 'user_roles' })
   roles: Roles[];

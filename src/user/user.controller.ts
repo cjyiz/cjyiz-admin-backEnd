@@ -36,17 +36,11 @@ export class UserController {
     // return this.userService.findAll();
   }
 
-  @Get('/:id')
-  @UseGuards(AdminGuard)
-  @UseGuards(JwtGuard)
-  getUser(@Param('id', ParseIntPipe) id: number): any {
-    console.log('cjyiz查询用户2', id);
-    return this.userService.findOne(id);
-  }
-
   @Get('/profile')
-  getUserProfile(): any {
-    return this.userService.findProfile(2);
+  async getUserProfile(): Promise<any> {
+    const res = await this.userService.findProfile(5);
+    console.log('chachu', res);
+    return res;
   }
 
   @Get('/logs')
@@ -73,5 +67,13 @@ export class UserController {
     // } else {
     //   throw new UnauthorizedException();
     // }
+  }
+
+  @Get('/:id')
+  @UseGuards(AdminGuard)
+  @UseGuards(JwtGuard)
+  getUser(@Param('id', ParseIntPipe) id: number): any {
+    console.log('cjyiz查询用户2', id);
+    return this.userService.findOne(id);
   }
 }

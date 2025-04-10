@@ -5,7 +5,7 @@ import { Repository, In } from 'typeorm';
 import * as argon2 from 'argon2';
 
 import { User } from './entities/user.entity';
-import { Roles } from 'src/rols/entities/roles.enetity';
+import { Roles } from 'src/roles/entities/role.entity';
 // import { Logs } from 'src/logs/entities/logs.entity';
 // import { Roles } from 'src/rols/entities/roles.enetity';
 
