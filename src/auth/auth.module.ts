@@ -6,26 +6,18 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ConfigEnum } from 'src/enmu/config.enum';
+import { jwtConstants } from './constants';
 
 @Global()
 @Module({
   imports: [
     UserModule,
     PassportModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => {
-        // console.log({
-        //   secret: configService.get<string>(ConfigEnum.SECRET),
-        // });
-        return {
-          secret: configService.get<string>(ConfigEnum.SECRET),
-          signOptions: {
-            expiresIn: '1d',
-          },
-        };
-      },
-      inject: [ConfigService],
+    // 这里全局注册
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '600s' },
     }),
   ],
   controllers: [AuthController],

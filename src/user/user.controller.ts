@@ -16,8 +16,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { CreateUserPipe } from './pipes/create-user.pipe';
 import { AdminGuard } from 'src/gurads/admin.guard';
-import { AuthGuard } from '@nestjs/passport';
-import { JwtGuard } from 'src/gurads/jwt.guard';
+import { AuthGuard } from 'src/auth/auth.gurad';
+
 
 @Controller('user')
 export class UserController {
@@ -70,8 +70,8 @@ export class UserController {
   }
 
   @Get('/:id')
-  @UseGuards(AdminGuard)
-  @UseGuards(JwtGuard)
+  // @UseGuards(AdminGuard)
+  @UseGuards(AuthGuard)
   getUser(@Param('id', ParseIntPipe) id: number): any {
     console.log('cjyiz查询用户2', id);
     return this.userService.findOne(id);

@@ -17,6 +17,7 @@ export class AuthController {
     @Body() dto: SigninUserDto,
   ) {
     const { username, password, captchaKey } = dto;
+    console.log('身份验证', dto);
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const isCaptchaValid = session.captcha && captchaKey === session.captcha;
     if (!isCaptchaValid) {
@@ -26,7 +27,7 @@ export class AuthController {
     }
     const token = await this.authService.signin(username, password);
     return {
-      access_token: token,
+      ...token,
     };
   }
 
