@@ -10,6 +10,7 @@ import { CaptchaModule } from './captcha/captcha.module';
 import { Logs } from './logs/entities/logs.entity';
 import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/entities/role.entity';
+import { MenuModule } from './menu/menu.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { Roles } from './roles/entities/role.entity';
     AuthModule,
     CaptchaModule,
     RolesModule,
+    MenuModule,
   ],
   controllers: [],
   providers: [],

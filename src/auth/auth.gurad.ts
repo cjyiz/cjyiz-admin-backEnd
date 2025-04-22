@@ -23,9 +23,8 @@ export class AuthGuard implements CanActivate {
     try {
       console.log('验证是否有效1');
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, prettier/prettier
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const payload = await this.jwtService.verifyAsync(token, {
-        // eslint-disable-next-line prettier/prettier
         secret: jwtConstants.secret,
       });
 

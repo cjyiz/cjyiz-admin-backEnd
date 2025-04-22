@@ -18,7 +18,6 @@ import { CreateUserPipe } from './pipes/create-user.pipe';
 import { AdminGuard } from 'src/gurads/admin.guard';
 import { AuthGuard } from 'src/auth/auth.gurad';
 
-
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
