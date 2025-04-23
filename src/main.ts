@@ -5,7 +5,8 @@ import * as session from 'express-session';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new HttpExceptionFilter());
-
+  // 设置全局前缀为/api
+  app.setGlobalPrefix('api');
   app.use(
     session({
       secret: 'your-secret-key',
