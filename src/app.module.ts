@@ -11,6 +11,8 @@ import { Logs } from './logs/entities/logs.entity';
 import { RolesModule } from './roles/roles.module';
 import { Roles } from './roles/entities/role.entity';
 import { MenuModule } from './menu/menu.module';
+import { NoticeModule } from './notice/notice.module';
+import { Notice } from './notice/entities/notice.entity';
 
 @Module({
   imports: [
@@ -24,7 +26,7 @@ import { MenuModule } from './menu/menu.module';
       // password: 'example',
       password: '8560760123cjyiZ@',
       database: 'testdb',
-      entities: [Profile, User, Roles, Logs],
+      entities: [Profile, User, Roles, Logs, Notice],
       synchronize: true,
       logging: ['error'],
     }),
@@ -32,6 +34,7 @@ import { MenuModule } from './menu/menu.module';
     CaptchaModule,
     RolesModule,
     MenuModule,
+    NoticeModule,
   ],
   controllers: [],
   providers: [],
