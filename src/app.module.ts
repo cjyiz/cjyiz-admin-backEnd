@@ -13,6 +13,7 @@ import { Roles } from './roles/entities/role.entity';
 import { MenuModule } from './menu/menu.module';
 import { NoticeModule } from './notice/notice.module';
 import { Notice } from './notice/entities/notice.entity';
+import { LogsModule } from './logs/logs.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { Notice } from './notice/entities/notice.entity';
     RolesModule,
     MenuModule,
     NoticeModule,
+    LogsModule,
   ],
   controllers: [],
   providers: [],
