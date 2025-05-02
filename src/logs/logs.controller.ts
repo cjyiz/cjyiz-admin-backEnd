@@ -27,6 +27,8 @@ export class LogsController {
   @Get('visit-stats')
   visitStats() {
     const res = {
+      uvGrowthRate: -0.83,
+      totalUvCount: 120,
       todayPvCount: 1629,
       totalPvCount: 286086,
       pvGrowthRate: -0.65,
