@@ -314,7 +314,7 @@ export class MenuService {
         component: 'Layout',
         name: '/routeParam',
         meta: {
-          title: '路由参数',
+          title: '路由测试',
           icon: 'el-icon-ElementPlus',
           hidden: false,
           alwaysShow: true,
