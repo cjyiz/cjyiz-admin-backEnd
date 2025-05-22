@@ -358,7 +358,7 @@ export class MenuService {
         component: 'Layout',
         name: '/function',
         meta: {
-          title: '功能演示',
+          title: '未来展望',
           icon: 'menu',
           hidden: false,
           alwaysShow: false,
